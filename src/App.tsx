@@ -34,7 +34,7 @@ const App: React.FC = () => {
           <IonRouterOutlet id="main">
             <Route path="/page/:name" component={Page} exact />
             <Route path="/daily-pic" component={DailyPicture} exact />
-            <Redirect from="/" to="/page/Inbox" exact />
+            <Redirect from="/" to="/daily-pic" exact />
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
