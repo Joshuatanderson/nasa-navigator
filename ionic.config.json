@@ -1,0 +1,7 @@
+{
+  "name": "nasa-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
