@@ -1,14 +1,11 @@
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React, {useEffect} from 'react';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router';
+import { DailyImage } from '../types/dailyImage';
 import './Page.css';
 
-const Page: React.FC = () => {
-
-  
-  useEffect(() => {
-
-  }, [])
+const Page = () => {
 
   const { name } = useParams<{ name: string; }>();
 

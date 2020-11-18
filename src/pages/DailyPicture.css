@@ -1,0 +1,12 @@
+.card-img {
+    object-fit: cover;
+    max-height: 30vh;
+    width: 100%;
+}
+
+.btns-cont {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+}
