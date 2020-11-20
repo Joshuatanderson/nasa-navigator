@@ -24,6 +24,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import DailyPicture from './pages/DailyPicture';
+import SearchPictures from './pages/SearchPictures';
 
 const App: React.FC = () => {
   return (
@@ -34,6 +35,7 @@ const App: React.FC = () => {
           <IonRouterOutlet id="main">
             <Route path="/page/:name" component={Page} exact />
             <Route path="/daily-pic" component={DailyPicture} exact />
+            <Route path="/search-pictures" component={SearchPictures} exact />
             <Redirect from="/" to="/daily-pic" exact />
           </IonRouterOutlet>
         </IonSplitPane>
