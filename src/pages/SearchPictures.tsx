@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import axios from "axios";
 import {IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonInput, IonText, IonItem, IonLabel, IonButton, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonCard, IonGrid} from "@ionic/react";
+import dayjs from "dayjs";
 
 import TruncatedText from "../components/TruncatedText";
 
@@ -52,17 +53,17 @@ const SearchPictures = () => {
 
       return content.map(item => {
         const imageLink = item.links && item.links[0].href;
-        console.log(item.href)
+        const dateCreated = item.data && dayjs(item.data[0].date_created as string);
 
         return (
           <IonCard>
             {imageLink && <img src={imageLink} alt="nasa pic" className="card-img"></img>} 
-            <IonCardHeader>
-              <IonCardSubtitle></IonCardSubtitle>
+            {item.data && <IonCardHeader>
+              <IonCardSubtitle>{dateCreated.format("MM-DD-YYYY")}</IonCardSubtitle>
               <IonCardTitle>{item.data[0].title}</IonCardTitle>
-            </IonCardHeader>
+            </IonCardHeader>}
             <IonCardContent>
-              <TruncatedText text={item.data[0].description as string}/>
+              {item.data && <TruncatedText text={item.data[0].description as string}/>}
             </IonCardContent>
           </IonCard>
       )})
