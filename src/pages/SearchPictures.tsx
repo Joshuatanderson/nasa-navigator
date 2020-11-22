@@ -1,12 +1,30 @@
 import React, { FormEvent, useState } from 'react';
 import axios from "axios";
-import {IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonInput, IonText, IonItem, IonLabel, IonButton} from "@ionic/react";
+import {IonPage, IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonInput, IonText, IonItem, IonLabel, IonButton, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonCard, IonGrid} from "@ionic/react";
+
+import TruncatedText from "../components/TruncatedText";
+
+interface SearchResults {
+    version: string;
+    metadata: {
+      total_hits: number;
+    };
+    href: string;
+    items: DataItem[];
+    links: Record<string, string>[];
+}
+
+interface DataItem {
+  href: string;
+  links: Record<string, string>[];
+  data: Record<string, string | string[]>[];
+}
 
 
 const SearchPictures = () => {
 
     const [search, setSearch] = useState<null | undefined | string>("");
-    const [searchResults, setSearchResults] = useState();
+    const [searchResults, setSearchResults] = useState<SearchResults>();
 
     const AXIOS_CONFIG = {
       params: {
@@ -20,10 +38,34 @@ const SearchPictures = () => {
       e.preventDefault();
 
       if(search) {
-        const results = await axios.get("https://images-api.nasa.gov/search", AXIOS_CONFIG);
-        console.log(results);
+        const results = await axios.get("https://images-api.nasa.gov/search", AXIOS_CONFIG)
+          .catch(err => console.error(err));
+        if(results){
+          setSearchResults(results.data.collection as SearchResults)
+          setSearch("")
+        }
       }
-      
+    }
+
+    const cards = (data: SearchResults) => {
+      const content = data.items;
+
+      return content.map(item => {
+        const imageLink = item.links && item.links[0].href;
+        console.log(item.href)
+
+        return (
+          <IonCard>
+            {imageLink && <img src={imageLink} alt="nasa pic" className="card-img"></img>} 
+            <IonCardHeader>
+              <IonCardSubtitle></IonCardSubtitle>
+              <IonCardTitle>{item.data[0].title}</IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent>
+              <TruncatedText text={item.data[0].description as string}/>
+            </IonCardContent>
+          </IonCard>
+      )})
     }
 
     return (
@@ -53,7 +95,7 @@ const SearchPictures = () => {
             </IonButton>
           </form>
 
-
+          {searchResults && cards(searchResults)}
            
         </IonContent>
       </IonPage>
