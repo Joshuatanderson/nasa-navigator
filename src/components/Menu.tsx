@@ -12,7 +12,7 @@ import {
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { archiveOutline, archiveSharp, bookmarkOutline, calendarOutline, calendarSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, searchOutline, searchSharp, thunderstormOutline, thunderstormSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
@@ -24,22 +24,22 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: 'Inbox',
+    title: 'Daily Picture',
     url: '/daily-pic',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
+    iosIcon: calendarOutline,
+    mdIcon: calendarSharp
   },
   {
-    title: 'Outbox',
-    url: '/page/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp
+    title: 'Search Pictures',
+    url: '/search-pictures',
+    iosIcon: searchOutline,
+    mdIcon: searchSharp
   },
   {
-    title: 'Favorites',
-    url: '/page/Favorites',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp
+    title: 'Natural Events',
+    url: '/natural-events',
+    iosIcon: thunderstormOutline,
+    mdIcon: thunderstormSharp
   },
   {
     title: 'Archived',

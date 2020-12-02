@@ -86,8 +86,9 @@ const NaturalEvents = () => {
     // }
 
     const makeList = (datas: dataItem[]) => datas.map((data: dataItem, index) => {
-        // const latn
         const [lng, lat]= data.geometry[0]?.coordinates;
+
+        // const latn
         // let map: google.maps.Map;
 
         // function initMap(lat: number, lng: number, zoom=8) {
@@ -96,14 +97,18 @@ const NaturalEvents = () => {
         //         zoom: zoom,
         // });
         // }
-        const renderMarker = (map: any, maps: any) => {
-            let marker = new maps.Marker({
-                position: {lat, lng},
-                map,
-                title: data.title
-            })
+        const renderMarkers = (map: any, maps: any, geometry: any) => {
+
+            for(let i=0; i < geometry.length; i++){
+            const [lng, lat]= data.geometry[i]?.coordinates;
+                new maps.Marker({
+                    position: {lat, lng},
+                    map,
+                    title: data.title
+                })
+            }
+
         }
-        console.log({lat, lng})
         return (
         <IonCard key={data.id}>
             <IonCardHeader>
@@ -118,7 +123,7 @@ const NaturalEvents = () => {
                     defaultZoom={5}
                     style={{height: "30vh"}}
                     options={{mapTypeId: 'satellite'}}
-                    onGoogleApiLoaded={({map, maps}) => renderMarker(map, maps)}
+                    onGoogleApiLoaded={({map, maps}) => renderMarkers(map, maps, data.geometry)}
                 >
                 </GoogleMapReact>
             </IonCardContent>
