@@ -8,6 +8,7 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
+  IonToggle,
 } from '@ionic/react';
 
 import React from 'react';
@@ -62,6 +63,10 @@ const Menu: React.FC = () => {
               </IonMenuToggle>
             );
           })}
+          <IonItem>
+            <IonToggle></IonToggle> 
+            <IonLabel>Dark Mode</IonLabel>
+          </IonItem>
         </IonList>
       </IonContent>
     </IonMenu>

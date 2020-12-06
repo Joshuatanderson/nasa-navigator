@@ -36,7 +36,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "resources": "npx capacitor-resources -p android && npx capacitor-resources -p ios"
   },
   "eslintConfig": {
     "extends": "react-app"
