@@ -12,8 +12,8 @@ import {
 } from '@ionic/react';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, calendarOutline, calendarSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, searchOutline, searchSharp, thunderstormOutline, thunderstormSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
-import {HapticsImpactStyle, Plugins} from "@capacitor/core";
+import { calendarOutline, calendarSharp, searchOutline, searchSharp, thunderstormOutline, thunderstormSharp } from 'ionicons/icons';
+import {Plugins} from "@capacitor/core";
 
 import './Menu.css';
 
@@ -53,7 +53,7 @@ const Menu = ({toggleTheme}: MenuProps) => {
   const location = useLocation();
 
   const handleToggleTheme = () => {
-    Plugins.Haptics.impact({style: HapticsImpactStyle.Medium});
+    Plugins.Haptics.vibrate();
     toggleTheme();
   }
 
