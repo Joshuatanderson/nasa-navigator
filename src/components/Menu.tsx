@@ -62,7 +62,7 @@ const Menu = ({toggleTheme}: MenuProps) => {
       <IonContent>
         <IonList id="inbox-list">
           <IonListHeader>Menu</IonListHeader>
-          <IonNote>Nasa Data Portal</IonNote>
+          <IonNote>Cosma</IonNote>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
