@@ -11,7 +11,9 @@
 # production
 /build
 /ios
+/android
 /resources
+.gradle/
 
 # misc
 .DS_Store
