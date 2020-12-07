@@ -1,6 +1,6 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "short_name": "Cosma",
+  "name": "Cosma - view space images and more, provided by NASA (this is a third part app, not affiliated with NASA)",
   "icons": [
     {
       "src": "assets/icon/favicon.png",
