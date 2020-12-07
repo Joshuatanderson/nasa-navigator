@@ -26,11 +26,9 @@ const DailyPicture = () => {
 
     axios.get("https://api.nasa.gov/planetary/apod", config)
         .then(resp => {
-        console.log(resp);
-        setImageData(resp.data);
+          setImageData(resp.data);
         })
         .catch(err => {
-            console.error(err);
             setErrorState({code: "ERROR", message: err})
         })
   }, [activeDate])
