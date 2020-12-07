@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import GoogleMapReact from "google-map-react";
 import { IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonList, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { API_KEY } from '../config';
+import { db} from '../firestore/initialize';
 
 
 interface dataItem {
@@ -12,8 +12,12 @@ interface dataItem {
     geometry: any;
 }
 
+
+
+
 const NaturalEvents = () => {
     const [data, setData] = useState<any>()
+    const [googleSecret, setGoogleSecret] = useState<string>()
     const rootUrl = "https://eonet.sci.gsfc.nasa.gov/api/v3";
 
     // First, show the list of events
@@ -29,6 +33,21 @@ const NaturalEvents = () => {
                 console.log(resp);
                 setData(resp.data.events);
             }).catch(err => err);
+    },[])
+
+    useEffect(() => {
+        async function fetchKey(){
+            const key = await db.collection("keys").doc("googleMaps")
+            .get()
+            .then(doc => {
+                if(doc?.data()?.SECRET){
+                    console.info(doc.data())
+                    return doc.data()?.SECRET as string
+                }
+            })
+            setGoogleSecret(key);
+        }
+        fetchKey();
     },[])
 
     useEffect(() => {
@@ -117,15 +136,15 @@ const NaturalEvents = () => {
                 </IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
-               <GoogleMapReact
-                    bootstrapURLKeys={{ key: API_KEY}}
+               {googleSecret && <GoogleMapReact
+                    bootstrapURLKeys={{ key: googleSecret}}
                     defaultCenter={{lat, lng}}
                     defaultZoom={5}
                     style={{height: "30vh"}}
                     options={{mapTypeId: 'satellite'}}
                     onGoogleApiLoaded={({map, maps}) => renderMarkers(map, maps, data.geometry)}
                 >
-                </GoogleMapReact>
+                </GoogleMapReact>}
             </IonCardContent>
         </IonCard>
     )});

@@ -34,7 +34,11 @@ const App: React.FC = () => {
   const [isDark, setIsDark] = useState(true);
 	const [isInit, setIsInit] = useState(false);
 
+	// TODO: secure google api credentials, store in firebase.  
+	// TODO: get splash screen
   // TODO: check if user prefers dark mode
+
+
 	useEffect(() => {
 		if (isInit) {
 			// set css
